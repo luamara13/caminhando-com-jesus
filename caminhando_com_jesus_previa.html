@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caminhando com Jesus — Tabuleiro Bíblico</title>
+<style>
+:root{--ink:#26324b;--cream:#fffaf0;--coral:#ff8b78;--yellow:#ffd66b;--mint:#9fe3c1;--blue:#91d5f2;--purple:#c7b4f5;--green:#2f8a69}
+*{box-sizing:border-box}body{margin:0;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);background:radial-gradient(circle at 5% 0%,#fff0c7 0,transparent 28%),radial-gradient(circle at 100% 20%,#dff5ff 0,transparent 30%),#fffaf2}
+header{padding:26px 18px 18px;text-align:center}.badge{display:inline-block;background:#fff;border:2px solid #f6dca2;border-radius:99px;padding:7px 13px;font-size:12px;font-weight:800;letter-spacing:.08em;color:#8b6632}
+h1{font-size:clamp(27px,5vw,44px);line-height:1.04;margin:13px auto 8px;max-width:700px;color:#254e61}h1 span{color:#ed806b}.subtitle{margin:0 auto;max-width:550px;line-height:1.5;color:#657087}
+main{max-width:1120px;margin:auto;padding:0 15px 32px}.layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(270px,.8fr);gap:17px;align-items:start}
+.panel{background:#ffffffd9;border:2px solid #fff;box-shadow:0 10px 30px #344b6310;border-radius:24px;padding:17px}
+.panel h2{font-size:18px;margin:0 0 12px}.toprow{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.small{font-size:12px;color:#738095}
+.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;padding:8px;background:#f3edff;border-radius:20px}
+.cell{position:relative;min-height:66px;border:2px solid #fff;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5px 2px;font-size:10px;font-weight:800;color:#34425a;box-shadow:0 3px 0 #d7d1e7;cursor:default}
+.cell:nth-child(6n+1){background:#c5f0dc}.cell:nth-child(6n+2){background:#ffe7a0}.cell:nth-child(6n+3){background:#bde9fb}.cell:nth-child(6n+4){background:#f8c9c1}.cell:nth-child(6n+5){background:#d8cbff}.cell:nth-child(6n){background:#f8dfb9}
+.cell .n{font-size:11px;opacity:.75}.cell .house{font-size:19px;line-height:1.15}.cell.special{outline:3px solid #ffbd53;outline-offset:-4px}.cell.start,.cell.finish{background:#fff!important;border-color:#f2b75d}
+.pawns{display:flex;flex-wrap:wrap;gap:2px;justify-content:center;margin-top:2px}.pawn{font-size:15px;filter:drop-shadow(0 1px 0 #fff)}
+.controls{display:grid;gap:12px}.fieldlabel{font-size:12px;font-weight:800;display:block;margin-bottom:5px}.field{width:100%;border:2px solid #e8eaf1;border-radius:12px;padding:11px 12px;font:inherit;color:var(--ink);background:#fff}.btn{border:0;border-radius:14px;padding:12px 15px;font:inherit;font-weight:900;cursor:pointer;transition:transform .12s}.btn:active{transform:translateY(2px)}.primary{background:#2e8267;color:white;box-shadow:0 4px 0 #21644e}.secondary{background:#fff0c9;color:#745222}.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}.dicebox{display:flex;align-items:center;gap:13px;background:#f5f0ff;border-radius:18px;padding:12px}.die{width:62px;height:62px;border-radius:17px;background:white;display:grid;place-items:center;font-size:42px;box-shadow:0 4px 0 #d7c9f5;flex-shrink:0}.status{font-size:13px;line-height:1.45}.playerlist{display:grid;gap:7px}.player{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:13px;background:#f8fafc;border:2px solid transparent}.player.active{border-color:#6ecba4;background:#effbf4}.player .emoji{font-size:23px}.player .name{font-weight:900;font-size:13px;flex:1}.player .pos{font-size:11px;color:#718096}.card{background:linear-gradient(135deg,#fff2be,#ffe0d7);border:2px solid white;border-radius:20px;padding:15px;min-height:145px}.cardhead{font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.09em;color:#986a36}.cardtext{font-size:17px;font-weight:800;line-height:1.35;margin:10px 0}.note{font-size:11px;color:#738095;line-height:1.45}.footer{text-align:center;padding:16px;font-size:12px;color:#7a8495}
+.modalback{position:fixed;inset:0;background:#18233b99;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modalback.show{display:flex}.modal{max-width:420px;width:100%;background:#fffaf0;border-radius:26px;padding:24px;text-align:center;box-shadow:0 20px 70px #1116}.modal .big{font-size:48px}.modal h2{margin:7px 0}.modal p{line-height:1.5}.modal .btn{width:100%}
+@media(max-width:760px){.layout{grid-template-columns:1fr}.board{gap:5px}.cell{min-height:55px;font-size:9px}.panel{padding:12px}.side{order:-1}.subtitle{font-size:14px}}
+</style>
+</head>
+<body>
+<header><div class="badge">✦ UM JOGO DE FÉ, REFLEXÃO E AMOR ✦</div><h1>Caminhando <span>com Jesus</span></h1><p class="subtitle">Um caminho de gratidão, carinho e descobertas para brincar em família. 💛</p></header>
+<main><div class="layout">
+<section class="panel">
+ <div class="toprow"><h2>🌈 Nosso caminho</h2><span class="small">34 casas · 2 a 12 jogadores</span></div>
+ <div class="board" id="board" aria-label="Tabuleiro de 34 casas"></div>
+ <p class="note" style="margin:12px 4px 0">Casas com ⭐ são especiais: pare, escolha uma carta e cumpra a tarefa com carinho. Esta é uma prévia digital para experimentar.</p>
+</section>
+<aside class="controls">
+ <section class="panel"><h2>👨‍👩‍👧‍👦 Quem vai brincar?</h2>
+  <label class="fieldlabel" for="playerName">Nome do jogador</label><div class="row"><input class="field" id="playerName" maxlength="18" placeholder="Ex.: Ana"><button class="btn secondary" id="addBtn">＋</button></div>
+  <div class="small" style="margin:7px 0 10px">Adicione até 12 jogadores. Começamos com dois.</div><div class="playerlist" id="players"></div>
+ </section>
+ <section class="panel"><h2>🎲 Sua vez!</h2><div class="dicebox"><div class="die" id="die">⚀</div><div><div style="font-weight:900" id="turnLabel">Vez de Ana</div><div class="status" id="status">Toque em “Jogar o dado” para começar.</div></div></div>
+  <button class="btn primary" id="rollBtn" style="width:100%;margin-top:12px">🎲 Jogar o dado</button>
+  <button class="btn secondary" id="nextBtn" style="width:100%;margin-top:8px">Próximo jogador →</button>
+ </section>
+ <section class="panel"><h2>💌 Carta de carinho</h2><div class="card"><div class="cardhead" id="cardnum">Cartas de tarefas</div><div class="cardtext" id="cardtext">Quando cair em uma casa especial, uma tarefa aparecerá aqui.</div><button class="btn secondary" id="drawBtn">Escolher uma carta</button></div><p class="note" style="margin:10px 2px 0">As tarefas são inspiradas nas cartas do material original Caminhando com Jesus.</p></section>
+</aside>
+</div><div class="footer">Feito com carinho para aprender, agradecer e compartilhar o amor de Jesus. ✨</div></main>
+<div class="modalback" id="modal"><div class="modal"><div class="big" id="modalEmoji">🌟</div><h2 id="modalTitle">Uma carta especial!</h2><p id="modalText"></p><button class="btn primary" id="closeModal">Que lindo! 💛</button></div></div>
+<script>
+const tasks=[
+"Olhe para alguém do grupo e agradeça pela vida dessa pessoa.",
+"Levante-se e dê um abraço carinhoso em alguém, se a pessoa quiser.",
+"De mãos dadas, digam juntos: “Sou muito grato por tudo”.",
+"Lembre-se de algo muito legal que aconteceu e agradeça a Deus por esse momento.",
+"Olhe para o céu, contemple, respire fundo e reconheça a beleza da criação.",
+"Pense em algo gostoso que você comeu e agradeça a Deus por esse alimento.",
+"Olhe para sua casa e diga: “Obrigado, Senhor, pelo lar que temos”.",
+"Dê um grande sorriso para alguém.",
+"Agradeça pelo banho de cada dia e por poder ficar limpinho!",
+"Agradeça porque você pode se movimentar, andar, falar e enxergar.",
+"Olhe para uma árvore ou flor e agradeça por tanta beleza.",
+"Olhe para alguém do grupo e diga uma qualidade bonita dessa pessoa.",
+"Feche os olhos por um instante, escute os sons e conte qual chamou sua atenção.",
+"Invente um movimento de dança para agradecer ao corpo. Os outros podem imitar!",
+"Se pudesse pedir algo bonito para o mundo inteiro, o que pediria?",
+"Lembre-se de um presente que recebeu e que deixou você muito feliz.",
+"Conte aos outros uma coisa que deixa você triste e explique por quê, se quiser.",
+"Conte aos outros uma coisa que deixa você muito feliz."
+];
+const special=[1,4,9,12,15,20,24,27,28,31];
+const emojis=["🐑","🕊️","🌻","🦋","🐠","🌈","⭐","🐞","🌷","🐝","🦄","🐢"];
+let players=[{name:"Ana",pos:0,emoji:"🦋"},{name:"Davi",pos:0,emoji:"🐑"}],turn=0,rolled=false;
+const dieFaces=["⚀","⚁","⚂","⚃","⚄","⚅"];
+const board=document.getElementById("board");
+function renderBoard(){board.innerHTML="";for(let i=1;i<=34;i++){let c=document.createElement("div");c.className="cell"+(special.includes(i)?" special":"")+(i===1?" start":"")+(i===34?" finish":"");let pawns=players.filter(p=>p.pos===i).map(p=>`<span class="pawn" title="${esc(p.name)}">${p.emoji}</span>`).join("");let label=i===1?"INÍCIO":i===34?"CHEGADA":special.includes(i)?"⭐ CARTA":(["🌱","💛","🙏","🌟","🌼"][i%5]);c.innerHTML=`<span class="n">${i}</span><span class="house">${label}</span><div class="pawns">${pawns}</div>`;board.appendChild(c)}}
+function renderPlayers(){document.getElementById("players").innerHTML=players.map((p,i)=>`<div class="player ${i===turn?"active":""}"><span class="emoji">${p.emoji}</span><span class="name">${esc(p.name)}</span><span class="pos">Casa ${p.pos||"Início"}</span></div>`).join("");document.getElementById("turnLabel").textContent="Vez de "+players[turn].name}
+function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function update(){renderBoard();renderPlayers()}
+function drawTask(){let idx=Math.floor(Math.random()*tasks.length);document.getElementById("cardnum").textContent=`Carta de tarefa ${idx+1} de ${tasks.length}`;document.getElementById("cardtext").textContent=tasks[idx]}
+document.getElementById("addBtn").onclick=()=>{let inp=document.getElementById("playerName"),name=inp.value.trim();if(!name)return;if(players.length>=12){alert("O jogo aceita até 12 jogadores.");return}players.push({name,pos:0,emoji:emojis[players.length%emojis.length]});inp.value="";update()};
+document.getElementById("playerName").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("addBtn").click()});
+document.getElementById("rollBtn").onclick=()=>{if(rolled){alert("Passe a vez para o próximo jogador.");return}let n=1+Math.floor(Math.random()*6);document.getElementById("die").textContent=dieFaces[n-1];let p=players[turn],old=p.pos;p.pos=Math.min(34,p.pos+n);rolled=true;document.getElementById("status").textContent=`${p.name} tirou ${n} e avançou para a casa ${p.pos===34?"CHEGADA":p.pos}.`;update();if(special.includes(p.pos)){drawTask();showModal("💌","Hora de uma carta!",document.getElementById("cardtext").textContent)}else if(p.pos===34){showModal("🏆","Chegou à CHEGADA!",`Parabéns, ${p.name}! A verdadeira vitória é aprender a amar, agradecer e ter paciência.`)}};
+document.getElementById("nextBtn").onclick=()=>{turn=(turn+1)%players.length;rolled=false;document.getElementById("status").textContent="Agora é a vez de "+players[turn].name+".";document.getElementById("die").textContent="⚀";update()};
+document.getElementById("drawBtn").onclick=()=>{drawTask();showModal("💌","Uma tarefa para compartilhar",document.getElementById("cardtext").textContent)};
+function showModal(e,t,p){document.getElementById("modalEmoji").textContent=e;document.getElementById("modalTitle").textContent=t;document.getElementById("modalText").textContent=p;document.getElementById("modal").classList.add("show")}
+document.getElementById("closeModal").onclick=()=>document.getElementById("modal").classList.remove("show");
+update();
+</script>
+</body></html>

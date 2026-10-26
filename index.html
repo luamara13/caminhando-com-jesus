@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff0bc">
+<title>Caminhando com Jesus — Tabuleiro Bíblico</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;700;800;900&display=swap');
+:root{--navy:#243957;--pink:#ff9b9d;--gold:#ffce59;--sky:#79d1ed;--mint:#8ee0bb;--lilac:#bba5f5;--cream:#fff9e9}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#fff2c7,#fff9ef 42%,#e5f8ff);font-family:'Nunito',system-ui,sans-serif;color:var(--navy)}
+header{text-align:center;padding:24px 14px 15px;position:relative;overflow:hidden}
+header:before,header:after{content:'✦';position:absolute;font-size:46px;color:#ffcf5c;opacity:.8;top:25px}header:before{left:7%}header:after{right:7%;color:#f59ca3}
+.ribbon{display:inline-block;background:#fff;border:2px solid #f8d887;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:900;letter-spacing:.12em;color:#a16c35}
+h1{font-family:'Fredoka',sans-serif;font-size:clamp(30px,5vw,48px);line-height:1;margin:12px 0 7px;color:#285a6a}h1 em{font-style:normal;color:#ef7c7e}.subtitle{margin:0 auto;max-width:600px;color:#63748b;font-weight:700;font-size:14px}
+main{max-width:1160px;margin:auto;padding:8px 14px 30px}.grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,.8fr);gap:17px;align-items:start}
+.panel{background:#ffffffed;border:3px solid #fff;border-radius:25px;padding:15px;box-shadow:0 8px 0 #dcebf0,0 14px 30px #344b6310}
+.panel h2{font-family:'Fredoka',sans-serif;font-size:20px;margin:0 0 12px;color:#2b5969}.paneltop{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}.pill{font-size:11px;font-weight:900;background:#fff0c5;padding:6px 10px;border-radius:99px;color:#93662c}
+.board{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px;padding:9px;border-radius:20px;background:linear-gradient(135deg,#d9f4ff,#f2e8ff);border:2px dashed #b7d9eb}
+.cell{position:relative;min-height:88px;border:3px solid white;border-radius:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:5px 3px;box-shadow:0 4px 0 #00000012;overflow:hidden}
+.cell:after{content:'';position:absolute;width:45px;height:45px;border-radius:50%;background:#ffffff50;top:-24px;right:-18px}
+.cell:nth-child(6n+1){background:#a9ebcd}.cell:nth-child(6n+2){background:#ffe08b}.cell:nth-child(6n+3){background:#9de1f4}.cell:nth-child(6n+4){background:#ffb8b4}.cell:nth-child(6n+5){background:#d1c2ff}.cell:nth-child(6n){background:#ffd3a2}
+.cell .number{position:absolute;top:4px;left:6px;font-size:10px;font-weight:900;opacity:.65}.cell .symbol{font-size:25px;line-height:1.1;margin-top:6px}.cell .label{font-size:9px;font-weight:900;line-height:1.1;margin-top:3px;max-width:100%}
+.cell.special{border-color:#fff4b8;box-shadow:0 0 0 2px #f8b73c inset,0 4px 0 #00000012}.cell.start,.cell.finish{background:#fff8d9;border-color:#ffca55}.cell.finish{background:#c8f4d8}
+.tokens{display:flex;gap:1px;justify-content:center;flex-wrap:wrap;margin-top:3px}.token{font-size:17px;line-height:1;filter:drop-shadow(0 1px 0 white)}
+.side{display:grid;gap:14px}.label{display:block;font-size:12px;font-weight:900;margin-bottom:5px}.field{width:100%;padding:11px 12px;border:2px solid #e1e8ef;border-radius:13px;font:inherit;font-weight:700;color:var(--navy);background:white;min-width:0}.row{display:flex;gap:7px}.row>*{min-width:0;flex:1}.btn{border:0;border-radius:14px;padding:11px 13px;font:inherit;font-weight:900;cursor:pointer;transition:transform .12s}.btn:active{transform:translateY(2px)}.primary{background:#2d8768;color:#fff;box-shadow:0 4px 0 #21664e}.soft{background:#fff0c7;color:#805b28;box-shadow:0 3px 0 #efdca7}.players{display:grid;gap:6px;margin-top:10px}.player{display:flex;align-items:center;gap:9px;background:#f7fbff;border:2px solid transparent;border-radius:14px;padding:7px 9px}.player.active{background:#e9fff2;border-color:#83d9ad}.avatar{width:37px;height:37px;display:grid;place-items:center;border-radius:12px;background:white;border:2px solid #f4d98c;font-size:24px}.pname{font-size:13px;font-weight:900;flex:1}.pdesc{font-size:10px;color:#74849a}.dicearea{display:flex;align-items:center;gap:12px;background:#f0eaff;border-radius:18px;padding:12px}.die{width:63px;height:63px;display:grid;place-items:center;background:white;border-radius:17px;font-size:43px;box-shadow:0 4px 0 #d4c5ef;flex-shrink:0}.status{font-size:12px;line-height:1.45;color:#5d6f84}.card{border-radius:20px;background:linear-gradient(135deg,#fff0a9,#ffd5ce 55%,#d9f5ff);border:3px solid white;padding:14px;min-height:155px;box-shadow:inset 0 0 0 1px #f3d6aa}.cardhead{text-transform:uppercase;letter-spacing:.1em;font-size:10px;font-weight:900;color:#976735}.cardtext{font-family:'Fredoka',sans-serif;font-size:18px;line-height:1.25;font-weight:600;margin:9px 0 13px;color:#35435d}.tiny{font-size:10px;color:#758398;line-height:1.45;margin:9px 2px 0}.foot{text-align:center;color:#728399;font-size:12px;font-weight:800;padding:20px 8px}
+.modalback{position:fixed;inset:0;background:#1e2c46aa;display:none;align-items:center;justify-content:center;padding:20px;z-index:10}.modalback.show{display:flex}.modal{width:min(430px,100%);background:#fff9e9;border:4px solid white;border-radius:28px;padding:23px;text-align:center;box-shadow:0 20px 70px #1115}.modal .big{font-size:52px}.modal h2{font-family:'Fredoka',sans-serif;margin:5px 0;color:#285a6a}.modal p{line-height:1.5;font-weight:800}.modal .btn{width:100%}
+@media(max-width:800px){.grid{grid-template-columns:1fr}.board{gap:5px}.cell{min-height:70px}.side{order:2}header:before{left:2%}header:after{right:2%}}
+@media(max-width:420px){.board{gap:4px;padding:5px}.cell{min-height:59px;border-radius:12px;border-width:2px}.cell .symbol{font-size:20px}.cell .label{font-size:8px}.cell .number{font-size:9px;top:3px;left:4px}.panel{padding:11px}}
+</style>
+</head>
+<body>
+<header><div class="ribbon">✦ UM JOGO DE FÉ, REFLEXÃO E AMOR ✦</div><h1>Caminhando <em>com Jesus</em></h1><p class="subtitle">Cada casa é uma oportunidade de amar, agradecer, perdoar e fortalecer a fé. 💛</p></header>
+<main><div class="grid">
+<section class="panel">
+ <div class="paneltop"><h2>🌈 O caminho até Jesus</h2><span class="pill">34 CASAS · 2 A 12 JOGADORES</span></div>
+ <div class="board" id="board" aria-label="Tabuleiro ilustrado de 34 casas"></div>
+ <p class="tiny">⭐ Nas casas especiais, escolha uma das 18 cartas de tarefas. Joguem com carinho e respeito: ninguém perde por não saber responder, e todos podem ajudar.</p>
+</section>
+<aside class="side">
+ <section class="panel"><h2>🧑‍🤝‍🧑 Escolham seus peões</h2>
+  <label class="label" for="playerName">Nome do jogador</label><div class="row"><input class="field" id="playerName" maxlength="18" placeholder="Ex.: Ana"><button class="btn soft" id="addBtn" style="flex:0 0 52px">＋</button></div>
+  <div class="tiny">Cada participante escolhe uma figura bíblica para representá-lo. Até 12 jogadores.</div><div class="players" id="players"></div>
+ </section>
+ <section class="panel"><h2>🎲 É hora de jogar!</h2><div class="dicearea"><div class="die" id="die">⚀</div><div><div style="font-weight:900" id="turnLabel">Vez de Ana</div><div class="status" id="status">Toque no dado para iniciar a aventura!</div></div></div>
+  <button class="btn primary" id="rollBtn" style="width:100%;margin-top:12px">🎲 Jogar o dado</button><button class="btn soft" id="nextBtn" style="width:100%;margin-top:9px">Próximo jogador →</button>
+ </section>
+ <section class="panel"><h2>💌 Cartas de tarefas</h2><div class="card"><div class="cardhead" id="cardnum">Uma mensagem para o coração</div><div class="cardtext" id="cardtext">Toque para descobrir uma tarefa de gratidão, amor ou reflexão.</div><button class="btn soft" id="drawBtn">✨ Revelar carta</button></div><p class="tiny">As mensagens abaixo seguem as tarefas do PDF original.</p></section>
+</aside></div><div class="foot">✨ Que cada partida seja uma oportunidade de crescer na fé e compartilhar o amor de Deus! ✨</div></main>
+<div class="modalback" id="modal"><div class="modal"><div class="big" id="modalEmoji">💌</div><h2 id="modalTitle">Uma carta especial!</h2><p id="modalText"></p><button class="btn primary" id="closeModal">Vamos continuar! 💛</button></div></div>
+<script>
+const tasks=[
+"Levante-se e abrace alguém com carinho, se a pessoa quiser.",
+"Olhe para alguém do grupo e agradeça pela vida dessa pessoa.",
+"Olhe para o céu, contemple, respire fundo e diga: “Reconheço que sou pequeno diante do todo”.",
+"Juntos, de mãos dadas, digam: “Sou muito grato por tudo”.",
+"Lembre-se de algo muito legal que aconteceu e agradeça: “Deus, muito obrigado por esse momento”.",
+"Pense em algo gostoso que você comeu e agradeça a Deus por esse alimento.",
+"Olhe para sua casa e diga: “Obrigado, Senhor, pelo lar que eu e minha família temos”.",
+"Agradeça pelo banho de cada dia. Que delícia é poder ficar limpinho!",
+"Agradeça porque você pode se movimentar, andar, falar e enxergar.",
+"Dê um grande sorriso para alguém.",
+"Olhe para uma árvore ou para uma flor e diga: “Obrigado por tanta beleza”.",
+"Olhe para alguém do grupo e diga uma qualidade bonita dessa pessoa.",
+"Feche os olhos por um tempo, escute os sons e conte qual chamou sua atenção.",
+"Invente um movimento de dança para agradecer ao corpo. Os outros podem imitar!",
+"Se pudesse pedir algo bonito para o mundo inteiro, o que pediria? Conte aos jogadores.",
+"Lembre-se de um presente que você recebeu e que deixou você muito feliz.",
+"Conte aos outros uma coisa que deixa você triste e explique por quê. Você pode escolher não compartilhar algo pessoal.",
+"Conte aos outros uma coisa que deixa você muito feliz e explique por quê."
+];
+const special=[1,4,9,12,15,20,24,27,28,31];
+const houses=[
+["🏁","INÍCIO"],["🌻","GRATIDÃO"],["📖","PALAVRA"],["⭐","CARTA"],["💛","AMOR"],["🕊️","PAZ"],
+["🙏","ORAÇÃO"],["🌈","ESPERANÇA"],["⭐","CARTA"],["🌷","BONDADE"],["🌳","CRIAÇÃO"],["⭐","CARTA"],
+["😊","ALEGRIA"],["💃","DANCE"],["⭐","CARTA"],["🎁","PRESENTE"],["💭","REFLITA"],["💖","FELICIDADE"],
+["🤝","AMIZADE"],["⭐","CARTA"],["📖","PALAVRA"],["🌟","BRILHE"],["🫶","PERDOE"],["⭐","CARTA"],
+["🌼","CUIDADO"],["🙏","AGRADEÇA"],["🌞","LUZ"],["⭐","CARTA"],["⭐","CARTA"],["🕊️","PACIÊNCIA"],
+["⭐","CARTA"],["💬","COMPARTILHE"],["❤️","AMOR"],["🏆","CHEGADA"]
+];
+const pawns=[{name:"Jesus",emoji:"👑"},{name:"Maria",emoji:"👩🏻‍🦱"},{name:"Davi",emoji:"🧑🏻‍🦱"},{name:"Ester",emoji:"👸🏻"},{name:"Moisés",emoji:"🧔🏻"},{name:"Noé",emoji:"🧔🏽"},{name:"Daniel",emoji:"🧑🏽‍🦱"},{name:"Rute",emoji:"👩🏽"},{name:"José",emoji:"🧑🏾‍🦱"},{name:"Marta",emoji:"👩🏼"},{name:"Pedro",emoji:"🧔🏽‍♂️"},{name:"João",emoji:"🧑🏼‍🦱"}];
+let players=[{name:"Ana",pos:0,pawn:pawns[1]},{name:"Davi",pos:0,pawn:pawns[2]}],turn=0,rolled=false;
+const dieFaces=["⚀","⚁","⚂","⚃","⚄","⚅"];
+const board=document.getElementById("board");
+function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function renderBoard(){board.innerHTML="";for(let i=1;i<=34;i++){let c=document.createElement("div");c.className="cell"+(special.includes(i)?" special":"")+(i===1?" start":"")+(i===34?" finish":"");let p=players.filter(p=>p.pos===i).map(p=>`<span class="token" title="${esc(p.name)}">${p.pawn.emoji}</span>`).join("");let h=houses[i-1];c.innerHTML=`<span class="number">${i}</span><span class="symbol">${h[0]}</span><span class="label">${h[1]}</span><div class="tokens">${p}</div>`;board.appendChild(c)}}
+function renderPlayers(){document.getElementById("players").innerHTML=players.map((p,i)=>`<div class="player ${i===turn?"active":""}"><span class="avatar">${p.pawn.emoji}</span><span class="pname">${esc(p.name)}<div class="pdesc">${p.pawn.name}</div></span><span class="pdesc">Casa ${p.pos===0?"Início":p.pos}</span></div>`).join("");document.getElementById("turnLabel").textContent="Vez de "+players[turn].name}
+function update(){renderBoard();renderPlayers()}
+function drawTask(){let idx=Math.floor(Math.random()*tasks.length);document.getElementById("cardnum").textContent=`CARTA DE TAREFA ${idx+1} / 18`;document.getElementById("cardtext").textContent=tasks[idx];return tasks[idx]}
+function showModal(e,t,p){document.getElementById("modalEmoji").textContent=e;document.getElementById("modalTitle").textContent=t;document.getElementById("modalText").textContent=p;document.getElementById("modal").classList.add("show")}
+document.getElementById("addBtn").onclick=()=>{let inp=document.getElementById("playerName"),name=inp.value.trim();if(!name)return;if(players.length>=12){alert("O jogo aceita até 12 participantes.");return}let choice=pawns[players.length%pawns.length];players.push({name,pos:0,pawn:choice});inp.value="";update()};
+document.getElementById("playerName").addEventListener("keydown",e=>{if(e.key==="Enter")document.getElementById("addBtn").click()});
+document.getElementById("rollBtn").onclick=()=>{if(rolled){alert("Passe a vez para o próximo jogador.");return}let n=1+Math.floor(Math.random()*6);document.getElementById("die").textContent=dieFaces[n-1];let p=players[turn];p.pos=Math.min(34,p.pos+n);rolled=true;document.getElementById("status").textContent=`${p.name} tirou ${n} e avançou para a casa ${p.pos===34?"CHEGADA":p.pos}.`;update();if(special.includes(p.pos)){let task=drawTask();showModal("💌","Hora de uma carta!",task)}else if(p.pos===34){showModal("🏆","Chegou à CHEGADA!",`Parabéns, ${p.name}! A verdadeira vitória é aprender a amar, agradecer, perdoar e ter paciência.`)}};
+document.getElementById("nextBtn").onclick=()=>{turn=(turn+1)%players.length;rolled=false;document.getElementById("status").textContent="Agora é a vez de "+players[turn].name+".";document.getElementById("die").textContent="⚀";update()};
+document.getElementById("drawBtn").onclick=()=>{let task=drawTask();showModal("💌","Uma tarefa para compartilhar",task)};
+document.getElementById("closeModal").onclick=()=>document.getElementById("modal").classList.remove("show");
+update();
+</script>
+</body></html>
